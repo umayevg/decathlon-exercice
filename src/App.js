@@ -5,7 +5,9 @@ import Card from "./components/Card";
 
 function App() {
     const [games, setGames] = useState([])
+    const [game, setGame] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [modal, setModal] = useState(false)
 
     const fetchGames = async () => {
         setIsLoading(true)
@@ -26,6 +28,8 @@ function App() {
         const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=8501e887edbc4977af367e387e02e21a`)
 
         const data = await response.json()
+        setGame(data)
+        setModal(true)
 
         console.log(data)
     }
@@ -38,9 +42,7 @@ function App() {
     return (
         <div className="App">
             <div className="container">
-                {/*<Modal>*/}
-                {/*    <h2>Card name</h2>*/}
-                {/*</Modal>*/}
+                <Modal visible={modal} setVisible={setModal} game={game} />
                 <div className="cards">
                     {games.map(game => (
                         /*

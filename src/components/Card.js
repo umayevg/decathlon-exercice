@@ -9,7 +9,7 @@ const Card = ({game,fetchGame}) => {
                 <h3>{game.name}</h3>
                 <div className="platforms">
                     {game.platforms.map(platform => (
-                        <span key={platform.platform.name}>{platform.platform.name}</span>
+                        <span className="platform" key={platform.platform.name}>{platform.platform.name}</span>
 
                     ))}
                 </div>
