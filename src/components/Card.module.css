@@ -1,0 +1,84 @@
+.card {
+    border: 2px solid #0b6374;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 300px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    cursor: pointer;
+}
+
+.card .cardContent {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.card img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card .cardImg {
+    position: relative;
+}
+
+.card .cardImg span {
+    z-index: 1;
+    position: absolute;
+    background: #fff;
+    height: 35px;
+    width: 35px;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #333;
+    border-top: 0;
+    border-right: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    border-bottom-left-radius: 5px;
+}
+
+span.platform {
+    display: inline-block;
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-right: 2px;
+    font-size: 0.8rem;
+    color: #fff;
+
+    background: #d24335;
+    border-radius: 5px;
+}
+
+span {
+    font-size: 0.8rem;
+}
+
+.card .tags span {
+    display: inline-block;
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-right: 2px;
+    color: #fff;
+    background: #1c3a40;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .card .card-img span {
+        height: 30px;
+        width: 30px;
+        font-size: 0.8rem;
+    }
+
+    .card h3 {
+        font-size: 1rem;
+    }
+}

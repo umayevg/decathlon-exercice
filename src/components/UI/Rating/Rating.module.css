@@ -1,0 +1,27 @@
+
+
+.rating {
+    display: flex;
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+.rating > div {
+    width: 33.33333%;
+}
+
+.fill {
+    background: #ddd;
+}
+
+div.bg {
+    height: 100%;
+    display: inline-block;
+    background: yellow;
+    width: 68%;
+}
+
+
+.rating .fill {
+    margin-right: 10px;
+}

@@ -1,19 +1,28 @@
 import React from 'react';
+import classes from './Card.module.css'
 
-const Card = ({game,fetchGame}) => {
+const Card = ({game, fetchGame}) => {
+
+    const onClickCall = () => {
+        fetchGame(game.id)
+    }
+
     return (
-        <div className="card" key={game.name} onClick={() => fetchGame(game.id)}>
-            <img src={game.background_image} alt="" height="200" loading="lazy" decoding={"async"}
-                 style={{contentVisibility: 'auto'}}/>
-            <div className="card-content">
+        <div className={classes.card} key={game.name} onClick={onClickCall}>
+            <div className={classes.cardImg}>
+                {game.metacritic && <span>{game.metacritic}</span>}
+                <img src={game.background_image} alt={game.name} height="200" loading="lazy" decoding={"async"}
+                     style={{contentVisibility: 'auto'}}/>
+            </div>
+
+            <div className={classes.cardContent}>
                 <h3>{game.name}</h3>
                 <div className="platforms">
                     {game.platforms.map(platform => (
-                        <span className="platform" key={platform.platform.name}>{platform.platform.name}</span>
-
+                        <span className={classes.platform} key={platform.platform.name}>{platform.platform.name}</span>
                     ))}
                 </div>
-                <div className="tags">
+                <div className={classes.tags}>
                     {game.tags.slice(0, 2).map(tag => (
                         <span key={tag.name}>{tag.name}</span>
                     ))}

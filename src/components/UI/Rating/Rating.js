@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './Rating.module.css'
 
 const Rating = ({rating}) => {
 
@@ -20,12 +21,12 @@ const Rating = ({rating}) => {
     }
 
     return (
-        <div className="rating">
+        <div className={classes.rating}>
             <div dangerouslySetInnerHTML={{__html: starsString}}/>
-            <div className="fill">
-                <div className="bg" style={{width: rating.percent + '%'}}></div>
+            <div className={classes.fill}>
+                <div className={classes.bg} style={{width: rating.percent + '%'}}></div>
             </div>
-            <div>{rating.percent}%</div>
+            <div>{Math.round(rating.percent)}%</div>
         </div>
     )
 

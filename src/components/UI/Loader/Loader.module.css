@@ -1,0 +1,7 @@
+.loader {
+    display: inline-block;
+    width: 70px;
+    margin-left: calc(50% - 35px);
+    margin-top: calc(100vh / 2);
+    color: #fff;
+}
