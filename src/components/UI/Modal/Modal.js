@@ -28,15 +28,15 @@ const Modal = ({visible, setVisible, game, screenshots}) => {
                 </div>
                 <div className={classes.ratings}>
                     {game.ratings.sort((a, b) => b.id - a.id).map(rating =>
-                        <Rating rating={rating}/>
+                        <Rating key={rating.title} rating={rating}/>
                     )}
                 </div>
                 <div className={classes.screenshots}>
 
                     <Carousel>
                         {screenshots.map(image =>
-                            <div>
-                                <img src={image.image} decoding="async" loading="lazy"/>
+                            <div key={image.id}>
+                                <img  src={image.image} decoding="async" loading="lazy"/>
                             </div>
                         )}
                     </Carousel>

@@ -10,11 +10,20 @@ function App() {
     const [screenshots, setScreenshots] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [modal, setModal] = useState(false)
+    const [nextLink, setNextLink] = useState(null)
+    const [prevLink, setPrevLink] = useState(null)
 
-    const fetchGames = async () => {
+    const fetchGames = async (url) => {
         setIsLoading(true)
-        const response = await fetch('https://api.rawg.io/api/games?key=8501e887edbc4977af367e387e02e21a&page_size=40')
+        const response = await fetch(url)
         const data = await response.json()
+        if (data.next) {
+            setNextLink(prev => data.next)
+        }
+
+        if (data.previous) {
+            setPrevLink(prev => data.previous)
+        }
         setGames(data.results)
         setIsLoading(false)
     }
@@ -38,9 +47,18 @@ function App() {
         setModal(true)
     }
 
+    const prevPage = async () => {
+        await fetchGames(prevLink)
+
+    }
+
+    const nextPage = async () => {
+        await fetchGames(nextLink)
+    }
+
 
     useEffect(() => {
-        fetchGames()
+        fetchGames('https://api.rawg.io/api/games?key=8501e887edbc4977af367e387e02e21a&page_size=40')
     }, [])
 
     return (
@@ -54,6 +72,10 @@ function App() {
                     ))}
                 </div>
             }
+            <div className="navigation">
+                {prevLink && <button onClick={prevPage}>previous page</button>}
+                {nextLink && <button onClick={nextPage}>next page ></button>}
+            </div>
         </div>
     );
 }
