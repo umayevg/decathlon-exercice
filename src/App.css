@@ -28,6 +28,35 @@ body {
     gap: 20px;
 }
 
+.navigation {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.navigation button {
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 8px;
+    background: #000000;
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.navigation button:hover {
+    background: #fff;
+    color: #000;
+}
+.navigation button[disabled] {
+    color: #fff;
+    background: rgba(28, 27, 27, 0.84);
+    cursor: auto;
+}
+
 @media (max-width: 768px) {
     .cards {
         grid-template-columns: repeat(2, 1fr);

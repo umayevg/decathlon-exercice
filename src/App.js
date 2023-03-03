@@ -13,16 +13,21 @@ function App() {
     const [nextLink, setNextLink] = useState(null)
     const [prevLink, setPrevLink] = useState(null)
 
+
     const fetchGames = async (url) => {
         setIsLoading(true)
         const response = await fetch(url)
         const data = await response.json()
-        if (data.next) {
+        if (data.next !== null) {
             setNextLink(prev => data.next)
+        } else {
+            setNextLink(prev => null)
         }
 
-        if (data.previous) {
+        if (data.previous !== null) {
             setPrevLink(prev => data.previous)
+        } else {
+            setPrevLink(prev => null)
         }
         setGames(data.results)
         setIsLoading(false)
@@ -73,8 +78,14 @@ function App() {
                 </div>
             }
             <div className="navigation">
-                {prevLink && <button onClick={prevPage}>previous page</button>}
-                {nextLink && <button onClick={nextPage}>next page ></button>}
+                {prevLink !== null
+                    ? <button onClick={prevPage}>&laquo; Previous</button>
+                    : <button disabled>&laquo; Previous</button>
+                }
+                {nextLink !== null
+                    ? <button onClick={nextPage}>Next &raquo;</button>
+                    : <button disabled>Next &raquo;</button>
+                }
             </div>
         </div>
     );
