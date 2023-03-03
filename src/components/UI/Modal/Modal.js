@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from "./Modal.module.css";
+import Rating from "../Rating";
 
 
 const Modal = ({children, visible, setVisible, game}) => {
@@ -22,13 +23,9 @@ const Modal = ({children, visible, setVisible, game}) => {
 
                 ))}
                 <div className="ratings">
-                    <div className="rating">
-                        <div>&#11088;&#11088;&#11088;&#11088;</div>
-                        <div className="fill">
-                            <div className="bg" style={{width: game.ratings}}></div>
-                        </div>
-                        <div>68%</div>
-                    </div>
+                    {game.ratings.sort((a, b) => b.id - a.id).map(rating =>
+                        <Rating rating={rating}/>
+                    )}
                 </div>
             </div>
         </div>
