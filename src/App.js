@@ -34,9 +34,10 @@ function App() {
     }
 
 
+
     const fetchScreenshots = async (gameId) => {
         // https://api.rawg.io/api/games/{game_pk}/screenshots
-        const response = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.API_KEY}`)
+        const response = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.REACT_APP_API_KEY}`)
         const data = await response.json()
 
         return data
@@ -44,7 +45,7 @@ function App() {
 
 
     const fetchGame = async (gameId) => {
-        const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${process.env.API_KEY}`)
+        const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${process.env.REACT_APP_API_KEY}`)
         const data = await response.json()
         setGame(data)
         const pics = await fetchScreenshots(data.id)
@@ -63,7 +64,7 @@ function App() {
 
 
     useEffect(() => {
-        fetchGames(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&page_size=40`)
+        fetchGames(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&page_size=40`)
     }, [])
 
     return (
@@ -77,6 +78,7 @@ function App() {
                     ))}
                 </div>
             }
+            {JSON.stringify(process.env.REACT_APP_API_KEY)}
             <div className="navigation">
                 {prevLink !== null
                     ? <button onClick={prevPage}>&laquo; Previous</button>

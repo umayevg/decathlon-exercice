@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from "./Modal.module.css";
 import Rating from "../Rating/Rating";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -36,7 +36,7 @@ const Modal = ({visible, setVisible, game, screenshots}) => {
                     <Carousel>
                         {screenshots.map(image =>
                             <div key={image.id}>
-                                <img  src={image.image} loading="lazy"/>
+                                <img src={image.image} loading="lazy" alt="Game screenshot"/>
                             </div>
                         )}
                     </Carousel>
