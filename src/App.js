@@ -78,7 +78,6 @@ function App() {
                     ))}
                 </div>
             }
-            {JSON.stringify(process.env.REACT_APP_API_KEY)}
             <div className="navigation">
                 {prevLink !== null
                     ? <button onClick={prevPage}>&laquo; Previous</button>
