@@ -11,7 +11,7 @@ const Card = ({game, fetchGame}) => {
         <div className={classes.card} key={game.name} onClick={onClickCall}>
             <div className={classes.cardImg}>
                 {game.metacritic && <span>{game.metacritic}</span>}
-                <img src={game.background_image} alt={game.name} height="200" loading="lazy" decoding={"async"}
+                <img src={game.background_image} alt={game.name} height="200" loading="lazy"
                      style={{contentVisibility: 'auto'}}/>
             </div>
 
