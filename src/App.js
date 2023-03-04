@@ -20,10 +20,8 @@ function App() {
     const fetchGames = async (options) => {
         setIsLoading(true)
         const [results, previous, next] = await GameService.getAll(options)
-        console.log(next, previous)
         setNextLink(prev => next)
         setPrevLink(prev => previous)
-
         setGames(results)
         setIsLoading(false)
     }
