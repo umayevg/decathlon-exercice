@@ -63,5 +63,6 @@ span.platform {
         padding: 10px;
         margin-left: 20px;
         margin-right: 20px;
+        max-height: 500px;
     }
 }
