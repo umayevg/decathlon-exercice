@@ -75,7 +75,7 @@ function App() {
         e.preventDefault()
         console.log(e.target.value)
         const searchString = e.target.value
-        fetchGames(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&page_size=40&search_precise=1&search_exact=1&search=${searchString}`)
+        fetchGames(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&page_size=40&search=${searchString}`)
 
     }
 
