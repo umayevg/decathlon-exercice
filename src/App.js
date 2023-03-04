@@ -19,10 +19,6 @@ function App() {
         const response = await fetch(url)
         const data = await response.json()
 
-        console.log(data.results)
-        if (!data.results)
-            return <p>No games found...</p>
-
         if (data.next !== null) {
             setNextLink(prev => data.next)
         } else {
@@ -79,12 +75,24 @@ function App() {
 
     }
 
+    function debounce(func, timeout = 300) {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                func.apply(this, args);
+            }, timeout);
+        };
+    }
+
+    const processChange = debounce(changeHandler);
+
     return (
         <div className="container">
             <div className="form">
                 <form>
                     <div className="row">
-                        <input onChange={changeHandler} type="text" placeholder="Game name..."/>
+                        <input onChange={processChange} type="text" placeholder="Game name..."/>
                     </div>
 
                 </form>
@@ -113,7 +121,7 @@ function App() {
             )}
 
             {!isLoading && games.length < 1 && (
-                <Loader title="No games found." />
+                <Loader title="No games found."/>
             )}
         </div>
     );
