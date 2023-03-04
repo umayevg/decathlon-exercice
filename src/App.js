@@ -1,8 +1,11 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import Modal from "./components/UI/Modal/Modal";
-import Card from "./components/Card";
 import Loader from "./components/UI/Loader/Loader";
+import Pagination from "./components/UI/Pagination/Pagination";
+import Cards from "./components/Cards";
+import Form from "./components/UI/Form/Form";
+import GameService from "./api/GameService";
 
 function App() {
     const [games, setGames] = useState([])
@@ -14,23 +17,14 @@ function App() {
     const [prevLink, setPrevLink] = useState(null)
 
 
-    const fetchGames = async (url) => {
+    const fetchGames = async (options) => {
         setIsLoading(true)
-        const response = await fetch(url)
-        const data = await response.json()
+        const [results, previous, next] = await GameService.getAll(options)
+        console.log(next, previous)
+        setNextLink(prev => next)
+        setPrevLink(prev => previous)
 
-        if (data.next !== null) {
-            setNextLink(prev => data.next)
-        } else {
-            setNextLink(prev => null)
-        }
-
-        if (data.previous !== null) {
-            setPrevLink(prev => data.previous)
-        } else {
-            setPrevLink(prev => null)
-        }
-        setGames(data.results)
+        setGames(results)
         setIsLoading(false)
     }
 
@@ -54,25 +48,24 @@ function App() {
     }
 
     const prevPage = async () => {
-        await fetchGames(prevLink)
+        await fetchGames({url: prevLink})
 
     }
 
     const nextPage = async () => {
-        await fetchGames(nextLink)
+        await fetchGames({url: nextLink})
     }
 
 
     useEffect(() => {
-        fetchGames(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&page_size=40`)
+        fetchGames()
     }, [])
 
     const changeHandler = (e) => {
         e.preventDefault()
         console.log(e.target.value)
-        const searchString = e.target.value
-        fetchGames(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&page_size=40&search=${searchString}`)
-
+        const searchInputString = e.target.value
+        fetchGames({searchString: searchInputString})
     }
 
     function debounce(func, timeout = 300) {
@@ -89,35 +82,18 @@ function App() {
 
     return (
         <div className="container">
-            <div className="form">
-                <form>
-                    <div className="row">
-                        <input onChange={processChange} type="text" placeholder="Game name..."/>
-                    </div>
 
-                </form>
-            </div>
+            <Form processChange={processChange}/>
+
             {game && <Modal visible={modal} setVisible={setModal} game={game} screenshots={screenshots}/>}
+
             {isLoading
                 ? <Loader title="Loading..."/>
-                : <div className="cards">
-                    {games.map(game => (
-                        <Card key={game.id} game={game} fetchGame={fetchGame}/>
-                    ))}
-                </div>
+                : <Cards games={games} fetchGame={fetchGame}/>
             }
-            {!isLoading && nextLink !== null && (
 
-                <div className="navigation">
-                    {prevLink !== null
-                        ? <button onClick={prevPage}>&laquo; Previous</button>
-                        : <button disabled>&laquo; Previous</button>
-                    }
-                    {nextLink !== null
-                        ? <button onClick={nextPage}>Next &raquo;</button>
-                        : <button disabled>Next &raquo;</button>
-                    }
-                </div>
+            {!isLoading && nextLink !== null && (
+                <Pagination nextLink={nextLink} nextPage={nextPage} prevLink={prevLink} prevPage={prevPage}/>
             )}
 
             {!isLoading && games.length < 1 && (
