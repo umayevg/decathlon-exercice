@@ -98,7 +98,7 @@ function App() {
                     ))}
                 </div>
             }
-            {!isLoading && games.length > 1 && (
+            {!isLoading && games.length > 40 && (
                 <div className="navigation">
                     {prevLink !== null
                         ? <button onClick={prevPage}>&laquo; Previous</button>
