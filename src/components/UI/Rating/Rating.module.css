@@ -1,8 +1,5 @@
-
-
 .rating {
     display: flex;
-    width: 60%;
     margin-bottom: 10px;
 }
 
@@ -14,6 +11,10 @@
     background: #ddd;
 }
 
+.rating .fill {
+    margin-right: 10px;
+}
+
 div.bg {
     height: 100%;
     display: inline-block;
@@ -21,7 +22,3 @@ div.bg {
     width: 68%;
 }
 
-
-.rating .fill {
-    margin-right: 10px;
-}

@@ -16,10 +16,7 @@ const Modal = ({visible, setVisible, game, screenshots}) => {
         <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
             <div className={classes.modalContent} onClick={(e) => e.stopPropagation()}>
                 <img src={game.background_image} alt={game.name}/>
-                <div className={classes.heading}>
                     <h2>{game.name}</h2>
-                    <span>{game.metacritic}</span>
-                </div>
                 <div className="platform">
                     {game.platforms.map(platform => (
                         <span className={classes.platform} key={platform.platform.name}>{platform.platform.name}</span>

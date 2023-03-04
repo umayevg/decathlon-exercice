@@ -18,12 +18,12 @@ const Card = ({game, fetchGame}) => {
             <div className={classes.cardContent}>
                 <h3>{game.name}</h3>
                 <div className="platforms">
-                    {game.platforms.map(platform => (
+                    {game.platforms?.map(platform => (
                         <span className={classes.platform} key={platform.platform.name}>{platform.platform.name}</span>
                     ))}
                 </div>
                 <div className={classes.tags}>
-                    {game.tags.slice(0, 2).map(tag => (
+                    {game.tags?.slice(0, 2).map(tag => (
                         <span key={tag.name}>{tag.name}</span>
                     ))}
                 </div>

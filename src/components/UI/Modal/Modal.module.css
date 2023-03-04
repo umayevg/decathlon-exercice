@@ -13,37 +13,27 @@
     display: flex;
     justify-content: center;
     align-items: self-start;
-    min-height: 400px;
-    height: auto;
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .modalContent {
-    padding: 20px;
+    padding: 30px;
     background: #fff;
+    border: 2px solid transparent;
     border-radius: 10px;
     max-width: 800px;
-    max-height: 700px;
+    max-height: 650px;
     overflow-y: scroll;
+}
+
+.modalContent h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .modalContent img {
     object-fit: cover;
     width: 100%;
-}
-
-
-.heading {
-    display: flex;
-    justify-content: space-between;
-}
-
-.heading span {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 5px 8px;
-    border: 1px solid #333;
-    border-radius: 50%;
 }
 
 span.platform {
@@ -58,13 +48,14 @@ span.platform {
     border-radius: 5px;
 }
 
-
 .ratings {
     margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .screenshots {
     margin-top: 30px;
+    padding-bottom: 20px;
 }
 
 @media (max-width: 768px) {

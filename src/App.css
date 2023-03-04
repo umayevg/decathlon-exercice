@@ -16,6 +16,7 @@ body {
 
 .container {
     max-width: 1440px;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 5px;
 }
@@ -56,6 +57,23 @@ body {
     background: rgba(28, 27, 27, 0.84);
     cursor: auto;
 }
+
+
+.container form {
+    margin-top: 50px;
+}
+
+form .row {
+    margin-bottom: 20px;
+}
+
+form .row input {
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+}
+
 
 @media (max-width: 768px) {
     .cards {

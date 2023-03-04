@@ -18,6 +18,11 @@ function App() {
         setIsLoading(true)
         const response = await fetch(url)
         const data = await response.json()
+
+        console.log(data.results)
+        if (!data.results)
+            return <p>No games found...</p>
+
         if (data.next !== null) {
             setNextLink(prev => data.next)
         } else {
@@ -66,27 +71,49 @@ function App() {
         fetchGames(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&page_size=40`)
     }, [])
 
+    const changeHandler = (e) => {
+        e.preventDefault()
+        console.log(e.target.value)
+        const searchString = e.target.value
+        fetchGames(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}&page_size=40&search_precise=1&search_exact=1&search=${searchString}`)
+
+    }
+
     return (
         <div className="container">
+            <div className="form">
+                <form>
+                    <div className="row">
+                        <input onChange={changeHandler} type="text" placeholder="Game name..."/>
+                    </div>
+
+                </form>
+            </div>
             {game && <Modal visible={modal} setVisible={setModal} game={game} screenshots={screenshots}/>}
             {isLoading
-                ? <Loader/>
+                ? <Loader title="Loading..."/>
                 : <div className="cards">
                     {games.map(game => (
                         <Card key={game.id} game={game} fetchGame={fetchGame}/>
                     ))}
                 </div>
             }
-            <div className="navigation">
-                {prevLink !== null
-                    ? <button onClick={prevPage}>&laquo; Previous</button>
-                    : <button disabled>&laquo; Previous</button>
-                }
-                {nextLink !== null
-                    ? <button onClick={nextPage}>Next &raquo;</button>
-                    : <button disabled>Next &raquo;</button>
-                }
-            </div>
+            {!isLoading && games.length > 1 && (
+                <div className="navigation">
+                    {prevLink !== null
+                        ? <button onClick={prevPage}>&laquo; Previous</button>
+                        : <button disabled>&laquo; Previous</button>
+                    }
+                    {nextLink !== null
+                        ? <button onClick={nextPage}>Next &raquo;</button>
+                        : <button disabled>Next &raquo;</button>
+                    }
+                </div>
+            )}
+
+            {!isLoading && games.length < 1 && (
+                <Loader title="No games found." />
+            )}
         </div>
     );
 }
