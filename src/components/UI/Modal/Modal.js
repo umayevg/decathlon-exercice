@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./Modal.module.css";
 import Rating from "../Rating/Rating";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 
 
@@ -11,12 +11,20 @@ const Modal = ({visible, setVisible, game, screenshots}) => {
         rootClasses.push(classes.active)
     }
 
+    const closeModal = () => {
+        setVisible(false)
+    }
+
+    const preventPropagation = (e) => {
+        e.stopPropagation()
+    }
+
 
     return (
-        <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-            <div className={classes.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div className={rootClasses.join(' ')} onClick={closeModal}>
+            <div className={classes.modalContent} onClick={preventPropagation}>
                 <img src={game.background_image} alt={game.name}/>
-                    <h2>{game.name}</h2>
+                <h2>{game.name}</h2>
                 <div className="platform">
                     {game.platforms.map(platform => (
                         <span className={classes.platform} key={platform.platform.name}>{platform.platform.name}</span>

@@ -2,13 +2,12 @@ import React from 'react';
 import classes from './Card.module.css'
 
 const Card = ({game, fetchGame}) => {
-
-    const onClickCall = () => {
+    const cardClickHandler = () => {
         fetchGame(game.id)
     }
 
     return (
-        <div className={classes.card} key={game.name} onClick={onClickCall}>
+        <div className={classes.card} key={game.name} onClick={cardClickHandler}>
             <div className={classes.cardImg}>
                 {game.metacritic && <span>{game.metacritic}</span>}
                 <img src={game.background_image} alt={game.name} height="200" loading="lazy"

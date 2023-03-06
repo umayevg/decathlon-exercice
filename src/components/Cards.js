@@ -2,6 +2,7 @@ import React from 'react';
 import Card from "./Card";
 
 const Cards = ({games, fetchGame}) => {
+
     return (
         <div className="cards">
             {games.map(game => (
