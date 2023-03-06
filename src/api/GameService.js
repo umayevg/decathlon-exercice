@@ -10,10 +10,14 @@ export default class GameService {
         }
         const response = await axios.get(url, {
             params: {
-                search: options.searchString !== undefined ? options.searchString : undefined
+                search: options.searchString,
+                ordering: options.filter,
+                search_precise: true,
+                search_exact: true
             }
         })
         const data = await response.data
+        console.log(data)
         const next = data.next
         const previous = data.previous
 
@@ -21,15 +25,11 @@ export default class GameService {
     }
 
     static async getById(gameId) {
-        const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${process.env.REACT_APP_API_KEY}`)
-
-        return response;
+        return await fetch(`https://api.rawg.io/api/games/${gameId}?key=${process.env.REACT_APP_API_KEY}`);
     }
 
 
     static async getScreenshotsByGameId(gameId) {
-        const response = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.REACT_APP_API_KEY}`)
-
-        return response;
+        return await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.REACT_APP_API_KEY}`);
     }
 }

@@ -21,13 +21,6 @@ body {
     padding: 5px;
 }
 
-/* Cards */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
 
 .navigation {
     margin-top: 30px;
@@ -52,34 +45,10 @@ body {
     background: #fff;
     color: #000;
 }
+
 .navigation button[disabled] {
     color: #fff;
     background: rgba(28, 27, 27, 0.84);
     cursor: auto;
 }
 
-
-.container form {
-    margin-top: 50px;
-}
-
-form .row {
-    margin-bottom: 20px;
-}
-
-form .row input {
-    font-size: 1.5rem;
-    outline: none;
-    width: 100%;
-    padding: 15px;
-    border-radius: 8px;
-    border: none;
-}
-
-
-@media (max-width: 768px) {
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-}

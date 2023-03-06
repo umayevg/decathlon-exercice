@@ -6,6 +6,7 @@ import Pagination from "./components/UI/Pagination/Pagination";
 import Cards from "./components/Cards";
 import Form from "./components/UI/Form/Form";
 import GameService from "./api/GameService";
+import Header from "./components/UI/Header/Header";
 
 function App() {
     const [games, setGames] = useState([])
@@ -59,45 +60,29 @@ function App() {
         fetchGames()
     }, [])
 
-    const changeHandler = (e) => {
-        e.preventDefault()
-        console.log(e.target.value)
-        const searchInputString = e.target.value
-        fetchGames({searchString: searchInputString})
-    }
-
-    function debounce(func, timeout = 300) {
-        let timer;
-        return (...args) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                func.apply(this, args);
-            }, timeout);
-        };
-    }
-
-    const processChange = debounce(changeHandler);
 
     return (
-        <div className="container">
+        <>
+            <Header/>
+            <div className="container">
+                <Form fetchFun={fetchGames}/>
 
-            <Form processChange={processChange}/>
+                {game && <Modal visible={modal} setVisible={setModal} game={game} screenshots={screenshots}/>}
 
-            {game && <Modal visible={modal} setVisible={setModal} game={game} screenshots={screenshots}/>}
+                {isLoading
+                    ? <Loader title="Loading..."/>
+                    : <Cards games={games} fetchGame={fetchGame}/>
+                }
 
-            {isLoading
-                ? <Loader title="Loading..."/>
-                : <Cards games={games} fetchGame={fetchGame}/>
-            }
+                {!isLoading && nextLink !== null && (
+                    <Pagination nextLink={nextLink} nextPage={nextPage} prevLink={prevLink} prevPage={prevPage}/>
+                )}
 
-            {!isLoading && nextLink !== null && (
-                <Pagination nextLink={nextLink} nextPage={nextPage} prevLink={prevLink} prevPage={prevPage}/>
-            )}
-
-            {!isLoading && games.length < 1 && (
-                <Loader title="No games found."/>
-            )}
-        </div>
+                {!isLoading && games.length < 1 && (
+                    <Loader title="No games found."/>
+                )}
+            </div>
+        </>
     );
 }
 
