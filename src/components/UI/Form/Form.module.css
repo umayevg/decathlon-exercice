@@ -1,5 +1,5 @@
 form {
-    height: 150px;
+    height: 130px;
     background: rgba(0, 0, 0, 0.27);
     padding: 12px;
     display: flex;
@@ -21,12 +21,28 @@ form {
 
 
 .row input, .row select {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     outline: none;
     width: 100%;
-    padding: 14px;
+    padding: 10px;
     border: none;
-    height: 57px;
+    height: 49px;
+}
+
+.row input {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left: 20px;
+}
+
+select {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+select option {
+    font-size: 1.2rem;
 }
 
 
@@ -46,5 +62,9 @@ form {
         padding: 10px;
         border-radius: 6px;
         height: auto;
+    }
+
+    select option {
+        font-size: 1rem;
     }
 }

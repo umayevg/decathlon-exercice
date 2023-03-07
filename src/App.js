@@ -1,5 +1,5 @@
 import './App.css';
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import Modal from "./components/UI/Modal/Modal";
 import Loader from "./components/UI/Loader/Loader";
 import Pagination from "./components/UI/Pagination/Pagination";
@@ -28,23 +28,21 @@ function App() {
     }
 
 
-    const fetchScreenshots = async (gameId) => {
+    const fetchScreenshots = useCallback(async (gameId) => {
         // https://api.rawg.io/api/games/{game_pk}/screenshots
         const response = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.REACT_APP_API_KEY}`)
-        const data = await response.json()
-
-        return data
-    }
+        return await response.json()
+    }, [])
 
 
-    const fetchGame = async (gameId) => {
+    const fetchGame = useCallback(async (gameId) => {
         const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${process.env.REACT_APP_API_KEY}`)
         const data = await response.json()
         setGame(data)
         const pics = await fetchScreenshots(data.id)
         setScreenshots(pics.results)
         setModal(true)
-    }
+    }, [fetchScreenshots])
 
     const prevPage = async () => {
         await fetchGames({url: prevLink})

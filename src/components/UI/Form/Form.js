@@ -26,11 +26,10 @@ const Form = ({fetchFun}) => {
 
     const debouncedFormChangeHandler = debounce(formChangeHandler);
     return (
-        <div className="form">
-            {}
+        <>
             <form onChange={debouncedFormChangeHandler}>
                 <div className={classes.row}>
-                    <input ref={nameInputRef} type="text" placeholder="Search..."/>
+                    <input ref={nameInputRef} type="search" placeholder="Search..."/>
                 </div>
                 <div className={classes.row}>
                     <select ref={filterInputRef}>
@@ -46,7 +45,7 @@ const Form = ({fetchFun}) => {
                     </select>
                 </div>
             </form>
-        </div>
+        </>
     );
 };
 
