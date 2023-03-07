@@ -41,7 +41,7 @@ const Modal = ({visible, setVisible, game, screenshots}) => {
                     <Carousel>
                         {screenshots.map(image =>
                             <div key={image.id}>
-                                <img src={image.image} loading="lazy" alt="Game screenshot"/>
+                                <img src={image.image} alt="Game screenshot"/>
                             </div>
                         )}
                     </Carousel>

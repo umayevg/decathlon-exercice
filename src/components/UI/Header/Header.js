@@ -4,7 +4,7 @@ import classes from './Header.module.css'
 const Header = () => {
     return (
         <header>
-            <a href="/">Games DB</a>
+            <a href="/">Games App</a>
         </header>
     );
 };

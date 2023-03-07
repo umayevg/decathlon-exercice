@@ -9,7 +9,6 @@ const Form = ({fetchFun}) => {
         e.preventDefault()
         const searchInputString = nameInputRef.current.value
         const selectedFilter = filterInputRef.current.value
-        console.log(searchInputString, selectedFilter)
         fetchFun({searchString: searchInputString, filter: selectedFilter})
     }
 
