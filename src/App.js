@@ -31,7 +31,9 @@ function App() {
     const fetchScreenshots = async (gameId) => {
         // https://api.rawg.io/api/games/{game_pk}/screenshots
         const response = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.REACT_APP_API_KEY}`)
-        return await response.json()
+        const data = await response.json()
+
+        return data
     }
 
 
