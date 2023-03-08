@@ -51,8 +51,6 @@
 }
 
 .modalContent img {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
     object-fit: cover;
     width: 100%;
 }
@@ -87,8 +85,9 @@ span.platform {
         max-height: 500px;
     }
 
-    .modalContent img {
+    .modalContent > img {
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
     }
+
 }
