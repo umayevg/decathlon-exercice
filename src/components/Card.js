@@ -9,8 +9,8 @@ const Card = ({game, cardClickFunc}) => {
         <div className={classes.card} key={game.name} onClick={cardClickHandler}>
             <div className={classes.cardImg}>
                 {game.metacritic && <span>{game.metacritic}</span>}
-                <img src={game.background_image} alt={game.name} height="190" loading="lazy" decoding="async"
-                     style={{contentVisibility: 'auto'}}/>
+                <amp-img src={game.background_image} alt={game.name} height="190" loading="lazy" decoding="async"
+                         style={{contentVisibility: 'auto'}}></amp-img>
             </div>
 
             <div className={classes.cardContent}>
