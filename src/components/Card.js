@@ -1,9 +1,8 @@
-import React from 'react';
 import classes from './Card.module.css'
 
-const Card = ({game, fetchGame}) => {
+const Card = ({game, cardClickFunc}) => {
     const cardClickHandler = () => {
-        fetchGame(game.id)
+        cardClickFunc(game)
     }
 
     return (

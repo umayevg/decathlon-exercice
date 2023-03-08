@@ -13,22 +13,25 @@ export default class GameService {
         };
 
         try {
-            const response = await axios.get(url, { params });
-            const { data } = response;
-            const { results, next, previous } = data;
+            const response = await axios.get(url, {params});
+            const {data} = response;
+            const {results, next, previous} = data;
             return [results, previous, next];
         } catch (error) {
             console.error(error);
             throw error;
         }
     }
-    //
-    // static async getById(gameId) {
-    //     return await fetch(`https://api.rawg.io/api/games/${gameId}?key=${process.env.REACT_APP_API_KEY}`);
-    // }
-    //
-    //
-    // static async getScreenshotsByGameId(gameId) {
-    //     return await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.REACT_APP_API_KEY}`);
-    // }
+
+
+    static async getScreenshotsByGameId(gameId) {
+        try {
+            const response = await axios.get(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.REACT_APP_API_KEY}`);
+
+            return response.data.results
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
+    }
 }

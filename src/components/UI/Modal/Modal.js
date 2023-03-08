@@ -5,14 +5,16 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 
 
-const Modal = ({visible, setVisible, game, screenshots}) => {
+const Modal = ({visible, setVisible}) => {
+    const game = visible.game
+    const screenshots = visible.screenshots
     const rootClasses = [classes.modal]
-    if (visible) {
+    if (visible.visible) {
         rootClasses.push(classes.active)
     }
 
     const closeModal = () => {
-        setVisible(false)
+        setVisible({visible: false, game: null})
     }
 
     const preventPropagation = (e) => {

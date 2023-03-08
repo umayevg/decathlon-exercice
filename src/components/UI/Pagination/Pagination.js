@@ -1,13 +1,20 @@
-import React from 'react';
+import classes from './Pagination.module.css'
 
-const Pagination = ({prevLink, nextLink, prevPage, nextPage}) => {
+const Pagination = ({prev, next, fetchFunc}) => {
+    const prevPage = async () => {
+        await fetchFunc({url: prev})
+    }
+
+    const nextPage = async () => {
+        await fetchFunc({url: next})
+    }
     return (
-        <div className="navigation">
-            {prevLink !== null
+        <div className={classes.pagination}>
+            {prev !== null
                 ? <button onClick={prevPage}>&laquo; Previous</button>
                 : <button disabled>&laquo; Previous</button>
             }
-            {nextLink !== null
+            {next !== null
                 ? <button onClick={nextPage}>Next &raquo;</button>
                 : <button disabled>Next &raquo;</button>
             }
