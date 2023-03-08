@@ -7,7 +7,8 @@ import {Carousel} from 'react-responsive-carousel';
 
 const Modal = ({visible, setVisible}) => {
     const game = visible.game
-    const screenshots = visible.screenshots
+    // const screenshots = visible.screenshots
+    const screenshots = game.short_screenshots?.slice(1) || []
     const rootClasses = [classes.modal]
     if (visible.visible) {
         rootClasses.push(classes.active)
@@ -28,20 +29,20 @@ const Modal = ({visible, setVisible}) => {
                 <img src={game.background_image} alt={game.name}/>
                 <h2>{game.name}</h2>
                 <div className="platform">
-                    {game.platforms.map(platform => (
+                    {game.platforms?.map(platform => (
                         <span className={classes.platform} key={platform.platform.name}>{platform.platform.name}</span>
 
                     ))}
                 </div>
                 <div className={classes.ratings}>
-                    {game.ratings.sort((a, b) => b.id - a.id).map(rating =>
+                    {game.ratings?.sort((a, b) => b.id - a.id).map(rating =>
                         <Rating key={rating.title} rating={rating}/>
                     )}
                 </div>
                 <div className={classes.screenshots}>
 
                     <Carousel>
-                        {screenshots.map(image =>
+                        {game.short_screenshots?.slice(1).map(image =>
                             <div key={image.id}>
                                 <img src={image.image} alt="Game screenshot" loading="lazy"/>
                             </div>

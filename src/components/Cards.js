@@ -25,7 +25,8 @@ const Cards = () => {
 
 
     const onCardClickHandler = async (game) => {
-        const gameScreenshots = await GameService.getScreenshotsByGameId(game.id)
+        // const gameScreenshots = await GameService.getScreenshotsByGameId(game.id)
+        const gameScreenshots = null
         setModal({visible: true, game: game, screenshots: gameScreenshots})
     }
 
