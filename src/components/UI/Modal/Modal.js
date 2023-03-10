@@ -28,7 +28,7 @@ const Modal = ({visible, setVisible}) => {
             <div className={classes.modalContent} onClick={preventPropagation}>
                 <img src={game.background_image} alt={game.name}/>
                 <h2>{game.name}</h2>
-                <div className="platform">
+                <div className={classes.platforms}>
                     {game.platforms?.map(platform => (
                         <span className={classes.platform} key={platform.platform.name}>{platform.platform.name}</span>
 
@@ -42,9 +42,9 @@ const Modal = ({visible, setVisible}) => {
                 <div className={classes.screenshots}>
 
                     <Carousel>
-                        {game.short_screenshots?.slice(1).map(image =>
+                        {screenshots.map(image =>
                             <div key={image.id}>
-                                <img src={image.image} alt="Game screenshot" loading="lazy"/>
+                                <img src={image.image} alt="Game screenshot" decoding={"async"}/>
                             </div>
                         )}
                     </Carousel>

@@ -14,7 +14,7 @@ const Card = ({game, cardClickFunc}) => {
             </div>
 
             <div className={classes.cardContent}>
-                <h3>{game.name}</h3>
+                <h2>{game.name}</h2>
                 <div className="platforms">
                     {game.platforms?.map(platform => (
                         <span className={classes.platform} key={platform.platform.name}>{platform.platform.name}</span>

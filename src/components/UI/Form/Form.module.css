@@ -51,6 +51,9 @@ select option {
         height: 120px;
         flex-direction: column;
     }
+    .row:first-child {
+        border-right: none;
+    }
 
     .row {
         width: 100% !important;
